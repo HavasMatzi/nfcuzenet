@@ -44,6 +44,25 @@
     .note {
       font-size: 0.9rem;
       color: #777;
+      margin-bottom: 18px;
+    }
+
+    .help-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-size: 0.95rem;
+      background: #e0a4a4;
+      color: #5a1f1f;
+      cursor: pointer;
+    }
+
+    .help-btn:active {
+      transform: scale(0.97);
+    }
+
+    .hidden {
+      display: none;
     }
 
     @keyframes fadeIn {
@@ -58,65 +77,47 @@
     <h1 id="greeting"></h1>
     <p id="msg"></p>
     <div class="note">Ez az üzenet ma végig veled marad 🤍</div>
+    <button id="hardBtn" class="help-btn" onclick="hardDay()">Nehéz napom van 🖤</button>
   </div>
 
   <script>
     /* 🌅 Napszakos köszönés */
     const hour = new Date().getHours();
     let greeting = "Szia 🤍";
-
     if (hour >= 5 && hour < 9) greeting = "Jó reggelt 🤍";
     else if (hour < 12) greeting = "Szép napot 🤍";
     else if (hour < 18) greeting = "Szép délutánt 🤍";
     else greeting = "Szép estét 🤍";
-
     document.getElementById("greeting").innerText = greeting;
 
-    /* 📅 Hét napjai szerinti üzenetek */
+    /* 📅 Dátum */
+    const today = new Date().toISOString().slice(0, 10);
+    const day = new Date().getDay();
+    const key = "dailyMessage_" + today;
+    const hardKey = key + "_hard";
+
+    /* 💌 Hét napjai */
     const weeklyMessages = {
-      1: [ // Hétfő
-        "Hétfő van, de nem egyedül kezded. ❤️",
-        "Apró lépések is számítanak ma.",
-        "Nem kell mindent ma megoldani."
-      ],
-      2: [ // Kedd
-        "Már benne vagy – jól csinálod.",
-        "A lendület lassan megjön.",
-        "Eddig is ügyesen haladtál."
-      ],
-      3: [ // Szerda
-        "Féltávnál jársz. Büszke vagyok rád.",
-        "A kitartásod ma is dolgozik.",
-        "Ez a nap is a tiéd."
-      ],
-      4: [ // Csütörtök
-        "Már látszik a vége. Tarts ki 🤍",
-        "Sokkal erősebb vagy, mint gondolod.",
-        "Egy lépéssel közelebb vagy."
-      ],
-      5: [ // Péntek
-        "Megcsináltad. Ma már könnyebb lesz.",
-        "Jár a megkönnyebbülés 😌",
-        "Büszke lehetsz a hetedre."
-      ],
-      6: [ // Szombat
-        "Ma lehet lassabban élni.",
-        "Pihenni is teljesítmény.",
-        "Engedd meg magadnak a nyugalmat."
-      ],
-      0: [ // Vasárnap
-        "Ez a nap rólad szól 🤍",
-        "Nem kell sietni sehová.",
-        "Gyűjts erőt a következő hétre."
-      ]
+      1: ["Hétfő van, de nem egyedül kezded.", "Nem kell mindent ma megoldani."],
+      2: ["Már benne vagy – jól csinálod.", "Haladsz, akkor is, ha nem érzed."],
+      3: ["Féltávnál jársz. Büszke vagyok rád."],
+      4: ["Tarts ki, már közel a vége."],
+      5: ["Megcsináltad. Jár a megkönnyebbülés."],
+      6: ["Ma lassabban is lehet élni."],
+      0: ["Ez a nap rólad szól 🤍"]
     };
 
-    /* 💌 Napi 1 üzenet logika */
-    const today = new Date().toISOString().slice(0, 10);
-    const day = new Date().getDay(); // 0 = vasárnap
-    const key = "dailyMessage_" + today;
+    /* 🆘 Nehéz nap üzenetek */
+    const hardDayMessages = [
+      "Most nem kell erősnek lenned.",
+      "Elég az is, ha csak átvészeled ezt a napot.",
+      "Itt vagyok veled. Nem vagy egyedül.",
+      "Ha ma csak lélegzel, az is elég.",
+      "Ez a nap nem határoz meg téged."
+    ];
 
     let message = localStorage.getItem(key);
+    const hardUsed = localStorage.getItem(hardKey);
 
     if (!message) {
       const list = weeklyMessages[day];
@@ -125,6 +126,20 @@
     }
 
     document.getElementById("msg").innerText = message;
+
+    if (hardUsed) {
+      document.getElementById("hardBtn").classList.add("hidden");
+    }
+
+    function hardDay() {
+      if (localStorage.getItem(hardKey)) return;
+
+      const msg = hardDayMessages[Math.floor(Math.random() * hardDayMessages.length)];
+      localStorage.setItem(key, msg);
+      localStorage.setItem(hardKey, "true");
+      document.getElementById("msg").innerText = msg;
+      document.getElementById("hardBtn").classList.add("hidden");
+    }
   </script>
 </body>
 </html>
