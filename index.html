@@ -91,18 +91,29 @@
     <div class="music">
       <div class="music-title">🎧 Egy kis zene most</div>
       <iframe
-    src="https://open.spotify.com/embed/playlist/0ku22Jid5BKHU1ChK54s3c?si=DWzF3hsOSMKCJshi9rHnKQ"
-    width="100%"
-    height="80"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
+  id="spotifyPlayer"
+  width="100%"
+  height="80"
+  frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 </div>
 </div>
 
 
 
   <script>
+    const playlistId = "0ku22Jid5BKHU1ChK54s3c?si=DWzF3hsOSMKCJshi9rHnKQ"; // ide a SAJÁT playlist ID-d
+  const randomSeed = Math.floor(Math.random() * 100000);
+
+  const spotifyUrl =
+    "https://open.spotify.com/embed/playlist/" +
+    playlistId +
+    "?utm_source=generator&shuffle=true&rand=" +
+    randomSeed;
+
+  document.getElementById("spotifyPlayer").src = spotifyUrl;
+    
     /* 🌅 Napszakos köszönés */
     const hour = new Date().getHours();
     let greeting = "Szia 🤍";
