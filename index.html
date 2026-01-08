@@ -103,16 +103,25 @@
 
 
   <script>
-    const playlistId = "2ZE8l9XItJCNBWf2SZkTy5"; // ide a SAJÁT playlist ID-d
-  const randomSeed = Math.floor(Math.random() * 100000);
+  const trackIds = [
+    "3ZffCQKLFLUvYM59XKLbVm",
+    "35MeePbBnryubkVG0v8GbI",
+    "6cql9tbKhnwkqPyYV3arGN",
+    "66Ceo7qZOyyX3J8AUsT2Vt",
+    "5vBJF9zAYFeWxqkGXF583A",
+    "55ikcenXPbQdzCnO1sOuYg",
+    "2WfaOiMkCvy7F5fcp2zZ8L"
+  ];
 
-  const spotifyUrl =
-    "https://open.spotify.com/embed/playlist/" +
-    playlistId +
-    "?utm_source=generator&shuffle=true&rand=" +
-    randomSeed;
+  // véletlenszerű index
+  const randomIndex = Math.floor(Math.random() * trackIds.length);
+  const trackId = trackIds[randomIndex];
 
-  document.getElementById("spotifyPlayer").src = spotifyUrl;
+  // Spotify iframe beállítása
+  document.getElementById("spotifyPlayer").src =
+    "https://open.spotify.com/embed/track/" +
+    trackId +
+    "?utm_source=generator";
     
     /* 🌅 Napszakos köszönés */
     const hour = new Date().getHours();
