@@ -69,6 +69,16 @@
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .music {
+  margin-top: 18px;
+}
+
+.music-title {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
   </style>
 </head>
 
@@ -79,6 +89,17 @@
     <div class="note">Ez az üzenet ma végig veled marad 🤍</div>
     <button id="hardBtn" class="help-btn" onclick="hardDay()">Nehéz napom van 🖤</button>
   </div>
+  <div class="music">
+    <div class="music-title">🎧 Egy kis zene most</div>
+    <iframe
+    src="https://open.spotify.com/embed/playlist/XXXXXXXX"
+    width="100%"
+    height="80"
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
+  </div>
+
 
   <script>
     /* 🌅 Napszakos köszönés */
