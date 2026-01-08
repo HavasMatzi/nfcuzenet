@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Mai üzeneted ❤️</title>
+  <style>
+    body {
+      background: #f7f2ec;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 420px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>💌 Mai üzeneted</h1>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    const messages = [
+      "Büszke vagyok rád. Jó helyen vagy. ❤️",
+      "Ezt is meg fogod csinálni. Mint mindig.",
+      "Egy ember biztosan ma is rád gondol. 😉",
+      "Nem vagy egyedül. Veled vagyok fejben.",
+      "A mosolyod ma is számít valakinek.",
+      "Csak így tovább – pont elég vagy."
+    ];
+
+    const random = Math.floor(Math.random() * messages.length);
+    document.getElementById("msg").innerText = messages[random];
+  </script>
+</body>
+</html>
